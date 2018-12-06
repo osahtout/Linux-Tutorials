@@ -745,7 +745,7 @@ Cancels previous commands.
 |Meta-v or Page Up 	|Move backward one page|
 |CTRL-l| 	Refresh and center screen|
 
-> **seach**
+> **search**
 
 |Key 	|Usage|
 |:---|:---|
@@ -763,3 +763,202 @@ Cancels previous commands.
 |CTRL- (space or CTRL-@)| 	Mark the beginning of the selected region. The end will be at the cursor position|
 |CTRL-w |	Delete the current marked text and write it to the buffer|
 |CTRL-y| 	Insert at current cursor location whatever was most recently deleted|
+
+
+<br>
+
+
+# Chapter 12
+
+> whoami  
+> who 
+
+**Creating Aliases**
+
+You can create customized commands or modify the behavior of already existing ones by creating aliases. Most often, these aliases are placed in your **~/.bashrc** file so they are available to any command shells you create. unalias removes an alias.
+
+Typing alias with no arguments will list currently defined aliases.
+
+Please note there should not be any spaces on either side of the equal sign and the alias definition needs to be placed within either single or double quotes if it contains any spaces.
+
+![alias example](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/97491d062822787b87a74f33ea868847/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/aliassuse.png)
+
+-----------------
+
+### Adding and Removing Users & Groups
+
+Distributions have straightforward graphical interfaces for creating and removing users and groups and manipulating group membership. However, it is often useful to do it from the command line or from within shell scripts. Only the root user can add and remove users and groups.
+
+Adding a new user is done with useradd and removing an existing user is done with **userdel**. In the simplest form, an account for the new user **bjmoose** would be done with:
+
+> $ sudo useradd bjmoose
+
+Note that for openSUSE, **useradd** is not in the normal user's PATH, so the command should be:
+
+> $ sudo /usr/sbin/useradd bjmoose
+
+which, by default, sets the home directory to **/home/bjmoose**, populates it with some basic files (copied from /etc/skel) and adds a line to **/etc/passwd** such as:
+
+**bjmoose:x:1002:1002::/home/bjmoose:/bin/bash**
+
+and sets the default shell to **/bin/bash**. Removing a user account is as easy as typing **userdel bjmoose**. However, this will leave the **/home/bjmoose** directory intact. This might be useful if it is a temporary inactivation. To remove the home directory while removing the account one needs to use the **-r** option to **userdel**.
+
+Typing id with no argument gives information about the current user, as in:
+
+> $ id  
+uid=1002(bjmoose) gid=1002(bjmoose) groups=106(fuse),1002(bjmoose)
+
+If given the name of another user as an argument, id will report information about that other user.
+
+<br>
+
+Adding a new group is done with **groupadd**:
+
+> $ sudo /usr/sbin/groupadd anewgroup
+
+The group can be removed with:
+
+> $ sudo /usr/sbin/groupdel anewgroup
+
+Adding a user to an already existing group is done with **usermod**. For example, you would first look at what groups the user already belongs to:
+
+>$ groups rjsquirrel  
+bjmoose : rjsquirrel
+
+and then add the new group:
+
+> $ sudo /usr/sbin/usermod -a -G anewgroup rjsquirrel
+
+> $ groups rjsquirrel  
+rjsquirrel: rjsquirrel anewgroup
+
+These utilities update **/etc/group** as necessary. Make sure to use the **-a** option, for append, so as to avoid removing already existing groups. **groupmod** can be used to change group properties, such as the Group ID (gid) with the **-g** option or its name with then **-n** option.
+
+Removing a user from the group is somewhat trickier. The -G option to usermod must give a complete list of groups. Thus, if you do:
+
+>$ sudo /usr/sbin/usermod -G rjsquirrel rjsquirrel
+
+>$ groups rjsquirrel  
+rjsquirrel : rjsquirrel
+
+only the _rjsquirrel_ group will be left.
+
+-------------------------
+
+|Task|Command|
+|:---|:----|
+|Show the value of a specific variable| 	echo $SHELL|
+|Export a new variable value| 	export VARIABLE=value (or VARIABLE=value; export VARIABLE)|
+|Add a variable permanently | 1- Edit ~/.bashrc and add the line export VARIABLE=value <br>2- Type source ~/.bashrc or just . ~/.bashrc (dot ~/.bashrc); or just start a new shell by typing  bash|
+
+
+### History
+
+Several associated environment variables can be used to get information about the history file. 
+
+- _HISTFILE_  
+The location of the history file. 
+- _HISTFILESIZE_  
+The maximum number of lines in the history file (default 500). 
+- _HISTSIZE_  
+The maximum number of commands in the history file. 
+- _HISTCONTROL_  
+How commands are stored. 
+- _HISTIGNORE_  
+Which command lines can be unsaved.
+
+For a complete description of the use of these environment variables, see man bash.
+
+
+|Key |	Usage|
+|:----|:----|
+|Up/Down arrow keys |	Browse through the list of commands previously executed|
+|!! (Pronounced as bang-bang) |	Execute the previous command|
+|CTRL-R |	Search previously used commands|
+|**Syntax----------**|**Task----------**|
+|! 	|Start a history substitution|
+|!$ 	|Refer to the last argument in a line|
+|!n |	Refer to the nth command line|
+|!string 	|Refer to the most recent command starting with string|
+
+<br>
+
+>example  
+
+$ history
+
+1. echo $SHELL
+2. echo $HOME
+3. echo $PS1
+4. ls -a
+5. ls -l /etc/ passwd
+6. sleep 1000
+6. history
+
+$ !1   (Execute command #1 above)
+echo $SHELL
+/bin/bash
+$ !sl   (Execute the command beginning with "sl")
+sleep 1000
+$
+
+-------------------------------------
+
+## Command line shortcuts
+
+|Keyboard Shortcut |	Task|
+|:----|:----|
+|CTRL-L 	|Clears the screen|
+|CTRL-D 	|Exits the current shell|
+|CTRL-Z 	|Puts the current process into suspended background|
+|CTRL-C 	|Kills the current process|
+|CTRL-H 	|Works the same as backspace|
+|CTRL-A 	|Goes to the beginning of the line|
+|CTRL-W 	|Deletes the word before the cursor|
+|CTRL-U 	|Deletes from beginning of line to cursor position|
+|CTRL-E 	|Goes to the end of the line|
+|Tab 	|Auto-completes files, directories, and binaries|
+
+----------------------------------------------------
+
+## File Permission
+
+>Files have three kinds of permissions: read (r), write (w), execute (x). These are generally represented as in rwx. These permissions affect three groups of owners: user/owner (u), group (g), and others (o).
+
+|user|group|others|
+|:---:|:----:|:----:|
+|rwx:| rwx: |rwx|  
+| u:   |g:   |o|
+
+<br>
+
+
+- **4 if read permission is desired**
+- **2 if write permission is desired**
+- **1 if execute permission is desired.**
+
+>**Thus, 7 means read/write/execute, 6 means read/write, and 5 means read/execute.**
+
+<br>
+
+|COmmand |	Shortcut|
+|:----|:----|
+|chown 	|Used to change user ownership of a file or directory|
+|chgrp 	|Used to change group ownership|
+|chmod |	Used to change the permissions on the file, which can be done separately for owner, group and the rest of the world (often named as other)|
+
+>example:  
+
+```
+$ ls -l somefile  
+  -rw-rw-r-- 1 student student 1601 Mar 9 15:04 somefile
+$ chmod uo+x,g-w somefile
+$ ls -l somefile  
+  -rwxr--r-x 1 student student 1601 Mar 9 15:04 somefile
+```
+
+```
+$ chmod 755 somefile
+$ ls -l somefile
+-rwxr-xr-x 1 student student 1601 Mar 9 15:04 somefile
+```
