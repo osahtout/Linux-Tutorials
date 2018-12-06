@@ -1,5 +1,17 @@
 # Introduction to Linux
 
+- [Chapter 3](#chapter-3)
+  * [Sub-heading](#sub-heading)
+    + [Sub-sub-heading](#sub-sub-heading)
+- [Chapter 7](#chapter-7)
+  * [Sub-heading](#sub-heading-1)
+    + [Sub-sub-heading](#sub-sub-heading-1)
+- [Heading](#heading-2)
+  * [Sub-heading](#sub-heading-2)
+    + [Sub-sub-heading](#sub-sub-heading-2)
+
+
+
 
 # Chapter 3
 
@@ -962,3 +974,215 @@ $ chmod 755 somefile
 $ ls -l somefile
 -rwxr-xr-x 1 student student 1601 Mar 9 15:04 somefile
 ```
+
+--------------------
+
+# Chapter 13
+
+## Manipulating files
+
+### Cat (or to Concatenate)
+
+> $ cat [filename]  
+- displays content of file
+
+<br>
+
+> $ tac   
+-  print or writes the lines of the file in reverse
+
+<br>
+
+> \>\>  
+- appends lines (or files) to an existing file.
+
+<br>
+
+|Command 	|Usage|
+|:------|:----|
+|cat file1 file2 |	Concatenate multiple files and display the output; i.e. the entire content of the ||first file is followed by that of the second file|
+|cat file1 file2 > newfile |	Combine multiple files and save the output into a new file|
+|cat file >> existingfile |	Append a file to the end of an existing file|
+|cat > file |	Any subsequent lines typed will go into the file, until CTRL-D is typed|
+|cat >> file |	Any subsequent lines are appended to the file, until CTRL-D is typed|
+
+<br>
+
+> cat > [filename] << EOF.  
+- creates new file, enter input. to finish type **EOF**
+
+
+
+### Working with larger files
+
+> $ less [somefile]  
+$ cat [somefile] | less  
+head –n 5 [somfile] -> firts five lines  
+$ tail -n 15 [somefile] -> last 15 lines  
+$ tail -f [somefile] -> montior growing file 
+
+
+### Viewing compress files
+
+|Command 	|Desctiption|
+|:------|:----|
+|$ zcat compressed-file.txt.gz| 	To view a compressed file|
+$ zless somefile.gz <br> or <br>$ zmore somefile.gz |	To page through a compressed file|
+|$ zgrep -i less somefile.gz| 	To search inside a compressed file|
+|$ zdiff file1.txt.gz file2.txt.gz| 	To compare two compressed files|
+
+------------------------
+
+## sed and awk
+
+### sed
+>String maniputlaiton in a file
+
+
+|Command 	|Usage|
+|:---|:---|
+|sed s/pattern/replace_string/ file 	|Substitute first string occurrence in every line|
+|sed s/pattern/replace_string/g file 	|Substitute all string occurrences in every line|
+|sed 1,3s/pattern/replace_string/g file| 	Substitute all string occurrences in a range of lines|
+|sed -i s/pattern/replace_string/g file| 	Save changes for string substitution in the same file|
+
+<br>
+
+> example
+```
+sed -e 's/01/JAN/' -e 's/02/FEB/' -e 's/03/MAR/' -e 's/04/APR/' -e 's/05/MAY/' \
+    -e 's/06/JUN/' -e 's/07/JUL/' -e 's/08/AUG/' -e 's/09/SEP/' -e 's/10/OCT/' \
+    -e 's/11/NOV/' -e 's/12/DEC/'
+```
+
+------------------------------
+
+### awk
+
+awk has the following features:
+
+- It is a powerful utility and interpreted programming language.
+- It is used to manipulate data files, retrieving, and processing text.
+- It works well with fields (containing a single piece of data, essentially a column) and records (a collection of fields, essentially a line in a file).
+
+<br>
+
+|Command 	|Usage|
+|:---|:---|
+|awk ‘command’  file 	|Specify a command directly at the command line|
+|awk -f scriptfile file 	|Specify a file that contains the script to be executed|
+|-----|-----|
+|awk '{ print $0 }' /etc/passwd |	Print entire file|
+|awk -F: '{ print $1 }' /etc/passwd 	|Print first field (column) of every line, separated by a |space
+|awk -F: '{ print $1 $7 }' /etc/passwd |	Print first and seventh field of every line|
+
+--------------------------------
+
+## File Manipulation Utilities
+
+### sort
+
+|Syntax |	Usage|
+|:---|:----|
+|sort \<filename> |	Sort the lines in the specified file, according to the characters at the beginning of each line| 
+|cat file1 file2 \| sort |	Combine the two files, then sort the lines and display the output on the terminal|
+|sort -r \<filename>| 	Sort the lines in reverse order|
+|sort -k 3 \<filename> 	|Sort the lines by the 3rd field on each line instead of the beginning|
+
+> **-u** or **uniq** to check unique values. Removes duplicates
+- sort file1 file2 | uniq > file3
+- sort file | uniq
+- sort -u file1 file2 > file3
+- uniq -c filename -> to count the number of duplicate entires
+
+-----------------------
+
+### paste
+
+> paste can create a new file with all colunm from the old files
+
+![paste example](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/0c746d1cc41ea999719d5cdad330d97b/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/LFS01_ch12_screen27.jpg)
+![paste example](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/da3d180e87ba8b70a3312fca74ecf815/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/LFS01_ch12_screen30.jpg)
+
+
+paste accepts the following options:
+
+1. **-d** delimiters, which specify a list of delimiters to be used instead of tabs for separating consecutive values on a single line.   
+Each delimiter is used in turn; when the list has been exhausted, paste begins again at the first delimiter.
+2. **-s**, which causes paste to append the data in series rather than in parallel; that is, in a horizontal rather than vertical fashion
+
+--------------------
+
+### join
+
+> enhanced version of pastes
+
+> First checks if files share common fields and joins them without duplicate
+
+----------------------
+
+### split
+
+> **split** is used to break up (or split) a file into equal-sized segments for easier viewing and manipulation, and is generally used only on relatively large files
+
+> default is 1000 lines. Original file unchanged
+
+- example :   
+
+```
+We will apply split to an American-English dictionary file of over 99,000 lines:
+
+> $ wc -l american-english
+99171 american-english
+
+where we have used wc (word count, soon to be discussed) to report on the number of lines in the file. Then, typing:
+
+> $ split american-english dictionary
+
+will split the American-English file into 100 equal-sized segments named 'dictionaryxx. The last one will of course be somewhat smaller.
+```
+
+-----------------
+
+## grep
+
+> grep  scans files for specified patterns and can be used with regular expressions, as well as simple strings, as shown in the table:
+
+|Command| 	Usage|
+|:----|:-----|
+|grep [pattern] \<filename>| 	Search for a pattern in a file and print all matching lines|
+|grep -v [pattern] \<filename> |	Print all lines that do not match the pattern|
+|grep [0-9] \<filename> 	|Print the lines that contain the numbers 0 through 9|
+|grep -C 3 [pattern] \<filename> |	Print context of lines (specified number of lines above and below the pattern) for matching the pattern. Here, the number of lines is specified as 3|
+
+-----------------------------------
+
+
+### tr
+
+> The tr utility is used to translate specified characters into other characters or to delete them. The general syntax is as follows:
+
+> $ tr [options] set1 [set2]
+
+> cat file | tr [options] set1 [set2]
+
+|Command 	|Usage|
+|:----|:----|
+|$ tr a-z A-Z	|Convert lower case to upper case|
+|$ tr '{}' '()' < inputfile > outputfile 	|Translate braces into parenthesis|
+|$ echo "This is for testing" \| tr [:space:] '\t' |	Translate white-space to tabs|
+|$ echo "This   is   for    testing" \| tr -s [:space:]| Squeeze repetition of characters using -s|
+|$ echo "the geek stuff" \| tr -d 't' |	Delete specified characters using -d option|
+|$ echo "my username is 432234" \| tr -cd [:digit:]| 	Complement the sets using -c option|
+|$ tr -cd [:print:] < file.txt |	Remove all non-printable character from a file|
+|$ tr -s '\n' ' ' < file.txt |	Join all the lines in a file into a single line|
+
+---------------------------------------
+
+### wordcount
+
+>print number words:  wc file  or wc -w filename  
+>print number of lines:  wc -f filename   
+>print number of bytes: wc -c filename   
+
+---------------------
