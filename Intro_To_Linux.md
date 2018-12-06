@@ -15,7 +15,7 @@
 8. Command Shell using getty
 9. X Windows System
 
-<br>
+--------------------------
 
 ## Different types of filesystems supported by Linux:
 
@@ -23,8 +23,7 @@
 * Flash storage filesystems: ubifs, JFFS2, YAFFS, etc.
 * Database filesystems
 * Special purpose filesystems: procfs, sysfs, tmpfs, squashfs, debugfs, etc
-
-<br>
+----------------------------------
 
 ## A comparison between filesystems in Windows and Linux is given in the accompanying table:
 
@@ -35,7 +34,7 @@
 | Mounting Parameters     | DriverLetter | MountPoint     |
 | Base Folder (os location)| C:\          | /              |
 
-<br>
+-----------------------------------
 
 
 ## Distribution
@@ -56,7 +55,7 @@
 
 ![File Hierarchy](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/1d8c97abd237dcd44a5fe5464f6521ac/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/chapter01_The_Linux_Kernel_Distribution_Families_and_Individual_Distributions.png)
 
-<br>
+-----------------------------
 
 ## Package Managers
 * Debian
@@ -72,7 +71,7 @@
 
 ![Package managers](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/b2cfd35138881e077bfc97915aed86b8/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/Package_Managers.png)
 
-<br>
+------------------------------------------
 
 ## File hierarchy
 
@@ -89,7 +88,7 @@
 * **tail**: used to show the last few lines of a file
 * **man**: used to view documentation.
 
-<br>
+--------------------------------
 
 ## Most input lines entered at the shell prompt have three basic elements:
 
@@ -98,6 +97,8 @@
 * Arguments.
     * [command] [options] [arguments]
     * shutdown -r now
+
+---------------------------------
 
 ## Setting Up sudo
 
@@ -110,20 +111,20 @@
 4. Finally, some Linux distributions will complain if you do not also change permissions on the file by doing:  
    \# chmod 440 /etc/sudoers.d/student
 
-<br>
+---------------------------------
 
 ## Switch between virtual terminal (VT)
 
 #### CTRL-ALT-functionKey   
 #### Ubuntu uses VT-7 or CTRL-ALT-F7
 
-<br>
+-------------------------------
 
 ## To start or stop GUI
 - $ sudo systemctl stop gdm (**or** sudo telinit 3)  
 - $ sudo systemctl start gdm (**or** sudo telinit 5)
 
-<br>
+---------------------------------
 
 ## SSH  
 - One can also connect and log into remote systems via the Secure Shell (SSH) utility. For example, by typing  
@@ -131,7 +132,7 @@ ssh username@remote-server.com,
  SSH would connect securely to the remote machine and give you a command line terminal window, using passwords  
   (as with regular logins) or cryptographic keys (a topic we will not discuss) to prove your identity.
 
-  <br>
+------------------------
 
 ## Shutdown
 
@@ -153,7 +154,7 @@ ssh username@remote-server.com,
 |_time_|The time argument specifies when to perform the shutdown operation. <br> The time can be formatted in different ways: <br> First, it can be an absolute time in the format hh:mm, in which hh is the hour (1 or 2 digits, from **0** to **23**) and mm is the minute of the hour (in two digits). <br> Second, it can be in the format +m, in which m is the number of minutes to wait. <br> Also, the **word** now is the same as specifying **+0**; it shuts the system down immediately. |
 |_message_|A message to be sent to all users, along with the standard shutdown notification. |
 
-<br>
+-----------------------------
 
 ## Locating application
 > which  
@@ -166,6 +167,7 @@ example:
 - $ whereis diff  
   diff: /usr/bin/diff /usr/share/man/man1/diff.1.gz /usr/share/man/man1p/diff.1p.gz
 
+-----------------------------
 
 ## Access Directories
 |Command | Results|
@@ -174,6 +176,8 @@ example:
 | cd ~ _or_ cd |Change to your home directory (shortcut name is ~ (tilde))|
 |cd ..| Change to parent directory (..) |
 |cd - | Changes to previous directory(- (minus))|
+
+-----------------------------
 
 ## Absolute vs Relative path
 
@@ -187,13 +191,13 @@ $ cd ../../usr/bin
 
 ![File Hierarchy](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/c9a79bc0bfc23d476b1c89380ca90aad/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/LFS01_ch06_screen19.jpg)
 
-<br>
+-----------------------------
 
 ## Exploring File System
 
 > tree -d
 
-<br>
+-----------------------------
 
 ## Hard Links
 The **ln** utility is used to create hard links and (with the **-s** option) soft links, also known as symbolic links or symlinks. These two kinds of links are very useful in UNIX-based operating systems.  
@@ -217,7 +221,7 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 38809 -rw-rw-r-- 2 student student 0 jan 6 09:18 file2  
 38810 -rw-rw-r-- 2 student student 5 jan 6 09:22 file2
 
-<br>
+-----------------------------
 
 ## Viewing Files
 
@@ -229,7 +233,8 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 |tail| Used to print the last 10 lines of a file by default. You can change the number of lines by doing -n 15 or just -15 if <br> you wanted to look at the last 15 lines instead of the default.|
 |head| The opposite of tail; by default, it prints the first 10 lines of a file.|
 |vi| View, edit files|
-<br>
+
+-----------------------------
 
 ## Moving, Renaming or Removing
 
@@ -245,7 +250,7 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 |mkdir| creates folder|
 |rmdir| remove empty directory|
 
-<br>
+-----------------------------
 
 ## Searching Files
 
@@ -273,6 +278,8 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 > bash permits an easier syntax for the above
 - $ do_something >& all-output-file
 
+-----------------------------
+
 ## Locate, find
 
 #### locate
@@ -290,7 +297,7 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 - $ find /usr -type f -name gcc
 
 
-<br>
+---------------------------------
 
 ## WildCard
 
@@ -301,7 +308,7 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 |[set]|Matches any character in the set of characters, for example [adf] will match any occurrence of "a", "d", or "f"|
 |[!set]|Matches any character not in the set of characters|
 
-<br>
+-------------------------------------
 
 # Chapter 9 processes
 
@@ -320,7 +327,7 @@ Processes use many system resources, such as memory, CPU (central processing uni
 |Kernel Threads |Kernel tasks that users neither start nor terminate and have little control over. These may perform actions like moving a thread from one CPU to another, or making sure input/output operations to disk are completed. |kthreadd, migration, ksoftirqd |
 
 
-<br>
+----------------------------------
 
 ## Process Id (PID) and threads
 
@@ -333,7 +340,7 @@ Processes use many system resources, such as memory, CPU (central processing uni
 > Killing a process if PID pid  
  -$ kill -SIGKILL [pid] or kill -9 [pid]
 
-<br>
+--------------------
 
  ## User and group ID UID GID
 
@@ -346,7 +353,185 @@ Processes use many system resources, such as memory, CPU (central processing uni
   >ps -ef -> all processes  
   >ps -eLf => every thread  
   >ps aux =>all users
-  >ps axo specify attributes
+  >ps axo specify attributes  
+  >pstree --> displays processes in a tree form
 
-  <br>
+
+-------------------------------
+
+## top
+
+>top command is like task manager  
+- q to exit  
+
+The **first** **line** displays a quick summary of what is happening in the system, including:
+
+- How long the system has been up
+- How many users are logged on
+- What is the load average.
+
+The **second** **line** output displays the total number of processes, the number of running, sleeping, stopped, and zombie processes.   
+
+The **third line** output indicates how the CPU time is being divided between the users (us) and the kernel (sy) by displaying the percentage of CPU time used for each.  
+
+The **fourth and fifth lines** of the top output indicate memory usage, which is divided in two categories:
+
+- Physical memory (RAM) – displayed on line 4.
+- Swap space – displayed on line 5.
+
+
+Each line in the process list of the top output displays information about a process. By default,processes are ordered by highest CPU usage.
+
+            Process Identification Number (PID)
+            Process owner (USER)
+            Priority (PR) and nice values (NI)
+            Virtual (VIRT), physical (RES), and shared memory (SHR)
+            Status (S)
+            Percentage of CPU (%CPU) and memory (%MEM) used
+            Execution time (TIME+)
+            Command (COMMAND)
+
+
+| Command | Output |
+|:------| :------|
+|t |Display or hide summary information (rows 2 and 3)|
+|m |Display or hide memory information (rows 4 and 5) |
+|A |Sort the process list by top resource consumers |
+|r | Renice (change the priority of) a specific processes|
+|k | Kill a specific process|
+| f|Enter the top configuration screen |
+| o|Interactively select a new sort order in the process list |
+
+-------------------
+
+## cron
+> scheduling task  
+
+
+|Field |Description|Values|
+|:----|:---------|:-------|
+|MIN |Minute  |0 to 59|
+|HOUR |Hour field| 0 to 23|
+|DOM | Day of the month| 1-31|
+|MON| Month of the field| 1-12|
+|DOW |Day of the week| 0-6 (0 is Dunday)|
+|CMD | command |Command to be executed|
+
+- example:  
+>  \* \* \* \* /usr/local/bin/execute/this/script.sh  
+woudl execute every mintute of every hour of every day of the month ...
+
+> 30 08 10 06 * /home/sysadmin/full-backup  
+will schedule a full-backup at 8.30 a.m., 10-June
+
+----------
+
+## Sleep
+
+**sleep NUMBER[SUFFIX]**...
+
+where SUFFIX may be:
+
+- **s** for seconds (the default)
+- **m** for minutes
+- **h** for hours
+- **d** for days.
+
+
+# Chapter 10
+## File Operation
+
+----------
+
+## mounting
+
+
+The mount command is used to attach a filesystem (which can be local to the computer or, as we shall discuss, on a network) somewhere within the filesystem tree. The basic arguments are the device node and mount point. For example,
+
+> $ sudo mount /dev/sda5 /home
+
+will attach the filesystem contained in the disk partition associated with the /dev/sda5 device node, into the filesystem tree at the /home mount point. There are other ways to specify the partition other than the device node, such as using the disk label or UUID.
+
+To unmount the partition, the command would be:
+
+> $ sudo umount /home
+
+only root users can umount
+
+
+**NFS??**
+
+-----------------------
+
+## bin and sbin
+
+![executible binaries](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/0f4cc85473fc7a961b3bc98b87d33a24/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/lsbin.png)
+
+![sbin](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/f60523278764a748d479ef923f75b0d7/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/lssbin.png)
+
+-----------------------------
+
+## var directory
+
+The **/var** directory contains files that are expected to change in size and content as the system is running (var stands for variable), such as the entries in the following directories:
+
+- System log files: /var/log
+- Packages and database files: /var/lib
+- Print queues: /var/spool
+- Temporary files: /var/tmp.
+
+--------------------------------
+
+## The /etc Directory
+
+The **/etc** directory is the home for system configuration files. It contains no binary programs, although there are some executable scripts. For example, **/etc/resolv.conf** tells the system where to go on the network to obtain host name to IP address mappings (DNS). Files like **passwd**, **shadow** and group for managing user accounts are found in the /etc directory. While some distributions have historically had their own extensive infrastructure under **/etc** (for example, Red Hat and SUSE have used **/etc/sysconfig**), with the advent of systemd there is much more uniformity among distributions today.
+
+Note that **/etc** is for system-wide configuration files and only the superuser can modify files there. User-specific configuration files are always found under their home directory
+
+--------------------------
+
+
+## External drive (usb or portable)
+
+> /run/media/student/myusbdrive.
+
+|Directory Name|Usage|
+|:----|:-----|
+|/opt| 	Optional application software packages|
+|/sys| 	Virtual pseudo-filesystem giving information about the system and the hardware Can be used to alter system parameters and for debugging purposes|
+|/srv| 	Site-specific data served up by the system Seldom used|
+|/tmp |	Temporary files; on some distributions erased across a reboot and/or may actually be a ramdisk in memory|
+|/usr |	Multi-user applications, utilities and data|
+|**dir /usr** | **usage**|
+|/usr/include |	Header files used to compile applications|
+|/usr/lib 	|Libraries for programs in /usr/bin and /usr/sbin|
+|/usr/lib64 	|64-bit libraries for 64-bit programs in /usr/bin and /usr/sbin|
+|/usr/sbin| 	Non-essential system binaries, such as system daemons|
+|/usr/share| 	Shared data used by applications, generally architecture-independent|
+|/usr/src| 	Source code, usually for the Linux kernel|
+|/usr/local| 	Data and programs specific to the local machine. Subdirectories include bin, sbin, lib, share, include, etc.|
+|/usr/bin| 	This is the primary directory of executable commands on the system|
+
+--------------------------------
+
+## Comparaing directories
+
+> diff [options] [filename1] [filename2]
+
+|diff Option 	|Usage|
+|:---------|:--------|
+|-c| Provides a listing of differences that include three lines of context before and after the lines differing in content|
+|-r| 	Used to recursively compare subdirectories, as well as the current directory|
+|-i |	Ignore the case of letters|
+|-w |	Ignore differences in spaces and tabs (white space)|
+|-q| 	Be quiet: only report if files are different without listing the differences|
+
+
+> diff3 [f1] [f2] [f3]
+
+>diff -Nur originalfile newfile > patchfile
+
+-------------------------------
+
+## Backing up data
 
