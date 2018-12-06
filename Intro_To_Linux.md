@@ -1,11 +1,11 @@
 # Introduction to Linux
 
 - [Chapter 3](#chapter-3)
-  * [Sub-heading](#sub-heading)
-    + [Sub-sub-heading](#sub-sub-heading)
+    - [Boot Process](#boot-process)
+        - [Sub-sub-heading](#sub-sub-heading)
 - [Chapter 7](#chapter-7)
-  * [Sub-heading](#sub-heading-1)
-    + [Sub-sub-heading](#sub-sub-heading-1)
+  - [Search Files](#searching-files)
+    - [Standard File streams](#standard-file-streams)
 - [Heading](#heading-2)
   * [Sub-heading](#sub-heading-2)
     + [Sub-sub-heading](#sub-sub-heading-2)
@@ -127,8 +127,9 @@
 
 ## Switch between virtual terminal (VT)
 
-#### CTRL-ALT-functionKey   
-#### Ubuntu uses VT-7 or CTRL-ALT-F7
+
+**CTRL-ALT-functionKey**  
+**Ubuntu uses VT-7 or CTRL-ALT-F7**
 
 -------------------------------
 
@@ -138,7 +139,8 @@
 
 ---------------------------------
 
-## SSH  
+## SSH
+
 - One can also connect and log into remote systems via the Secure Shell (SSH) utility. For example, by typing  
 ssh username@remote-server.com,  
  SSH would connect securely to the remote machine and give you a command line terminal window, using passwords  
@@ -294,11 +296,11 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 
 ## Locate, find
 
-#### locate
+### locate
 > locate zip | grep bin  
 - will list all the files and directories with both zip and bin in their name. We will cover grep in much more detail later. Notice the use of | to pipe the two commands together.
 
-#### find
+### find
 > Searching for files and directories named gcc:
 - $ find /usr -name gcc
 
@@ -322,7 +324,9 @@ Note that two files now appear to exist. However, a closer inspection of the fil
 
 -------------------------------------
 
-# Chapter 9 processes
+# Chapter 9
+
+**processes**
 
 
 A process is simply an instance of one or more related tasks (threads) executing on your computer. It is not the same as a program or a command. A single command may actually start several processes simultaneously. Some processes are independent of each other and others are related. A failure of one process may or may not affect the others running on the system.
@@ -358,7 +362,7 @@ Processes use many system resources, such as memory, CPU (central processing uni
 
  ![UID GID](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/fbe122ffd13edf336ad978cddb953a7f/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/LFS01_ch16_screen07.jpg)
 
- <br>
+ ---------------------------
 
  ## The ps Command (System V Style)
   >ps  
@@ -451,7 +455,7 @@ where SUFFIX may be:
 
 
 # Chapter 10
-## File Operation
+ **File Operation**
 
 ----------
 
@@ -777,7 +781,7 @@ Cancels previous commands.
 |CTRL-y| 	Insert at current cursor location whatever was most recently deleted|
 
 
-<br>
+-------------------------
 
 
 # Chapter 12
@@ -797,7 +801,7 @@ Please note there should not be any spaces on either side of the equal sign and 
 
 -----------------
 
-### Adding and Removing Users & Groups
+## Adding and Removing Users & Groups
 
 Distributions have straightforward graphical interfaces for creating and removing users and groups and manipulating group membership. However, it is often useful to do it from the command line or from within shell scripts. Only the root user can add and remove users and groups.
 
@@ -864,7 +868,7 @@ only the _rjsquirrel_ group will be left.
 |Add a variable permanently | 1- Edit ~/.bashrc and add the line export VARIABLE=value <br>2- Type source ~/.bashrc or just . ~/.bashrc (dot ~/.bashrc); or just start a new shell by typing  bash|
 
 
-### History
+## History
 
 Several associated environment variables can be used to get information about the history file. 
 
@@ -1158,7 +1162,7 @@ will split the American-English file into 100 equal-sized segments named 'dictio
 -----------------------------------
 
 
-### tr
+## tr
 
 > The tr utility is used to translate specified characters into other characters or to delete them. The general syntax is as follows:
 
@@ -1179,7 +1183,7 @@ will split the American-English file into 100 equal-sized segments named 'dictio
 
 ---------------------------------------
 
-### wordcount
+## wordcount
 
 >print number words:  wc file  or wc -w filename  
 >print number of lines:  wc -f filename   
