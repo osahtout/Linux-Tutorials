@@ -612,4 +612,154 @@ Note that **/etc** is for system-wide configuration files and only the superuser
 
 ---------------------------
 
+# Chapter 11
 
+## nano
+
+
+- CTRL-G  
+Display the help screen.
+- CTRL-O  
+Write to a file.
+- CTRL-X  
+Exit a file.
+- CTRL-R  
+Insert contents from another file to the current buffer.
+- CTRL-C  
+Cancels previous commands.
+
+<br>
+
+## vi
+
+>$ vim tutor for tutorial about vim
+
+|Mode| 	Feature|
+|:---|:----|
+|Command| - By default, vi starts in Command mode. <br> - Each key is an editor command. <br> - Keyboard strokes are interpreted as commands that can modify file contents.|
+|Insert |<br>  - Type i to switch to Insert mode from Command mode. <br>  - Insert mode is used to enter (insert) text into a file. <br>  - Insert mode is indicated by an “? INSERT ?” indicator at the bottom of the screen. <br>  - Press Esc to exit Insert mode and return to Command mode.|
+|Line 	| <br>  -    Type : to switch to the Line mode from Command mode. Each key is an external command, including operations such as writing the file contents to disk or exiting.  <br>  -   Uses line editing commands inherited from older line editors. Most of these commands are actually no longer used. Some line editing commands are very powerful. <br>  -   Press Esc to exit Line mode and return to Command mode.|
+
+<br>
+
+|Command| 	Usage|
+|:----|:----|
+|vi myfile |	Start the vi editor and edit the myfile file|
+|vi -r myfile |	Start vi and edit myfile in recovery mode from a system crash|
+|:r file2 |	Read in file2 and insert at current position|
+|:w |	Write to the file|
+|:w myfile| 	Write out the file to myfile|
+|:w! file2 |	Overwrite file2|
+|:x or :wq |	Exit vi and write out modified file|
+|:q |	Quit vi|
+|:q! |	Quit vi even though modifications have not been saved|
+
+<br>
+
+|Key 	|Usage|
+|:---|:---|
+|arrow keys| 	To move up, down, left and right|
+|j or [ret] |	To move one line down|
+|k 	|To move one line up|
+|h or Backspace |	To move one character left|
+|l or Space |	To move one character right|
+|0 |	To move to beginning of line|
+|$ |	To move to end of line|
+|w |	To move to beginning of next word|
+|:0 or 1G |	To move to beginning of file|
+|:n or nG |	To move to line n|
+|:$ or G |	To move to last line in file|
+|CTRL-F or Page Down 	|To move forward one page|
+|CTRL-B or Page Up 	|To move backward one page|
+|^l |	To refresh and center screen|
+
+<br>
+
+**search**
+
+|Command| 	Usage|
+|:----|:----|
+|/pattern 	|Search forward for pattern|
+|?pattern| 	Search backward for pattern|
+
+|Key 	|Usage|
+|:---|:---|
+|n |	Move to next occurrence of search pattern|
+|N| 	Move to previous occurrence of search pattern|
+
+<br>
+
+**keystrokes used when changing, adding, and deleting text**
+
+|Key 	|Usage|
+|:---|:---|
+|a| 	Append text after cursor; stop upon Escape key|
+|A |	Append text at end of current line; stop upon Escape key|
+|i| 	Insert text before cursor; stop upon Escape key|
+|I| 	Insert text at beginning of current line; stop upon Escape key|
+|o| 	Start a new line below current line, insert text there; stop upon Escape key|
+|O |	Start a new line above current line, insert text there; stop upon Escape key|
+|r |	Replace character at current position|
+|R |	Replace text starting with current position; stop upon Escape key|
+|x |	Delete character at current position|
+|Nx 	|Delete N characters, starting at current position|
+|dw |	Delete the word at the current position|
+|D |	Delete the rest of the current line|
+|dd |	Delete the current line|
+|Ndd or dNd |	Delete N lines|
+|u |	Undo the previous operation|
+|yy |	Yank (copy) the current line and put it in buffer|
+|Nyy or yNy |	Yank (copy) N lines and put it in buffer|
+|p |	Paste at the current position the yanked line or lines from the buffer.|
+
+<br>
+
+### emacs
+
+|Key 	|Usage|
+|:---|:---|
+|emacs myfile |	Start emacs and edit myfile|
+|CTRL-x i 	|Insert prompted for file at current position|
+|CTRL-x s 	|Save all files|
+|CTRL-x CTRL-w	|Write to the file giving a new name when prompted|
+|CTRL-x CTRL-s 	|Saves the current file |
+|CTRL-x CTRL-c |	Exit after being prompted to save any modified files|
+
+<br>
+
+|Key 	|Usage|
+|:---|:---|
+|arrow keys |	Use the arrow keys for up, down, left and right|
+|CTRL-n |	One line down|
+|CTRL-p 	|One line up|
+|CTRL-f 	|One character forward/right|
+|CTRL-b 	|One character back/left|
+|CTRL-a 	|Move to beginning of line|
+|CTRL-e 	|Move to end of line|
+|Meta-f 	|Move to beginning of next word|
+|Meta-b 	|Move back to beginning of preceding word|
+|Meta-< 	|Move to beginning of file|
+|Meta-g-g-n| 	Move to line n (can also use 'Esc-x Goto-line n')|
+|Meta-> 	|Move to end of file|
+|CTRL-v or Page Down| 	Move forward one page|
+|Meta-v or Page Up 	|Move backward one page|
+|CTRL-l| 	Refresh and center screen|
+
+> **seach**
+
+|Key 	|Usage|
+|:---|:---|
+|CTRL-s |	Search forward for prompted pattern, or for next pattern|
+|CTRL-r |	Search backwards for prompted pattern, or for next pattern|
+
+> **working with emacs**
+
+|Key 	|Usage|
+|:---|:---|
+|CTRL-o |	Insert a blank line|
+|CTRL-d |	Delete character at current position|
+|CTRL-k |	Delete the rest of the current line|
+|CTRL-_ |	Undo the previous operation|
+|CTRL- (space or CTRL-@)| 	Mark the beginning of the selected region. The end will be at the cursor position|
+|CTRL-w |	Delete the current marked text and write it to the buffer|
+|CTRL-y| 	Insert at current cursor location whatever was most recently deleted|
