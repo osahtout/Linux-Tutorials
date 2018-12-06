@@ -347,3 +347,6 @@ Processes use many system resources, such as memory, CPU (central processing uni
   >ps -eLf => every thread  
   >ps aux =>all users
   >ps axo specify attributes
+
+  <br>
+
