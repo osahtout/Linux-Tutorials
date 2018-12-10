@@ -11,11 +11,16 @@ def format_line(line):
 try:
 
     mkfile = input("Enter path of mardown file: ")
+    if not mkfile:
+        mkfile = eval(input("Enter path of markdown file"))
+        
     if ".md" not in mkfile:
+        raw_name = mkfile
         mkfile = mkfile+".md"
+    else:
+        raw_name = mkfile.replace(".md", "")
 
-
-    new_file = open("ToC"+mkfile, "w")
+    new_file = open(raw_name+"_ToC.md", "w")
     fi = open(mkfile, 'r')
 
     line = fi.readline()
