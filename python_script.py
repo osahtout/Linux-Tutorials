@@ -40,6 +40,14 @@ try:
                 line = format_line(line)
                 new_file.write("        - "+line)
 
+            elif line.count("#") is 4:
+                line = format_line(line)
+                new_file.write("            - "+line)
+
+            elif line.count("#") is 5:
+                line = format_line(line)
+                new_file.write("                - "+line)
+
         line = fi.readline()
 
 
