@@ -1577,3 +1577,116 @@ In this example, the system is able to locate the file /etc/logrotate.conf and l
 
 ----------------------------
 
+
+### Splitting Long Commands Over Multiple Lines
+
+>\
+
+example:  
+>$~/> cd $HOME  
+$~/> sudo apt-get install autoconf automake bison build-essential  
+    chrpath curl diffstat emacs flex gcc-multilib g++-multilib \   
+    libsdl1.2-dev libtool lzop make mc patch \  
+    screen socat sudo tar texinfo tofrodos u-boot-tools unzip \  
+    vim wget xterm zip   
+
+It's all one command split for better understanding
+
+------------------------
+
+### Putting Multiple Commands on a Single Line
+
+three commands in the following example will all execute, even if the ones preceding them fail:
+
+>$ make ; make install ; make clean
+
+<br>
+
+However, you may want to abort subsequent commands when an earlier one fails. You can do this using the && (and) operator as in:
+
+>$ make && make install && make clean
+
+<br>
+
+If the first command fails, the second one will never be executed. A final refinement is to use the || (or) operator, as in:
+
+>$ cat file1 || cat file2 || cat file3
+
+In this case, you proceed until something succeeds and then you stop executing any further steps.
+
+------------------------
+
+### Input/Output Redirection
+
+ to output to file: > 
+> $ free > /tmp/free.out
+
+to append to a file: >>
+
+<br>
+
+to input from file: <
+>$ wc < /etc/passwd  
+49  105 2678 /etc/passwd  
+>  
+>$ wc /etc/passwd  
+49  105 2678 /etcpasswd  
+>
+>$ cat /etc/passwd | wc
+49  105 2678
+
+
+--------------------
+
+### Built-In Shell Commands
+
+Shell scripts execute sequences of commands and other types of statements. These commands can be: 
+
+- Compiled applications. ex: rm, ls, vi ...
+- Built-in bash commands. ex: cd, echo, pwd ...
+- Shell scripts or scripts from other interpreted languages, such as perl and Python.
+
+> $ help
+
+|Compiled applications|build in bash commands|other scripts|
+|:-----|:----:|------:|
+|rm|cd||
+|ls|pwd||
+|df|echo||
+|vi|read||
+|gzip|logout||
+||printf||
+||let||
+||ulimit||
+
+<br>
+
+![helpbash](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/79040611925a7890d2337fb896445e08/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/helpbash.png)
+
+----------------------------
+
+
+### Script parameters
+
+|Parameter| 	Meaning|
+|:-------|:---------|
+|$0| 	Script name|
+|$1| 	First parameter|
+|$2, $3, etc.| 	Second, third parameter, etc.|
+|$* |	All parameters|
+|$# |	Number of arguments|
+
+-------------------------
+
+>Example
+
+![example paramteres](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/a7d08ff7b0604bb8bd5d324cc162d17f/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/scriptparams.png)
+
+- $0 prints the script name: param.sh
+- $1 prints the first parameter: one
+- $2 prints the second parameter: two
+- $3 prints the third parameter: three
+- $* prints all parameters: one two three four five
+- The final statement becomes: All done with param.sh
+
+
