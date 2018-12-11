@@ -1690,3 +1690,210 @@ Shell scripts execute sequences of commands and other types of statements. These
 - The final statement becomes: All done with param.sh
 
 
+------------------------------
+### Command Substitution
+
+To substitute the result of a command as a portion of another command can be done in two ways:
+
+- By enclosing the inner command in $( )
+- By enclosing the inner command with backticks (`)
+
+>  $ ls /lib/modules/$(uname -r)/
+
+-----------------
+
+### Environment Variables
+
+Most scripts use variables containing a value, which can be used anywhere in the script. These variables can either be user or system-defined. Many applications use such environment variables (already covered in some detail in Chapter 12: User Environment) for supplying inputs, validation, and controlling behavior.
+
+As we discussed earlier,  some examples of standard environment variables are HOME, PATH, and HOST. When referenced, environment variables must be prefixed with the $ symbol, as in $HOME. You can view and set the value of environment variables. For example, the following command displays the value stored in the PATH variable:
+
+>$ echo $PATH
+
+However, no prefix is required when setting or modifying the variable value. For example, the following command sets the value of the MYCOLOR variable to blue:
+
+>$ MYCOLOR=blue
+
+You can get a list of environment variables with the env, set, or printenv commands.
+
+### Exporting Environment Variables
+
+While we discussed the export of environment variables in the section on the "User Environment", it is worth reviewing this topic in the context of writing bash scripts.
+
+By default, the variables created within a script are available only to the subsequent steps of that script. Any child processes (sub-shells) do not have automatic access to the values of these variables. To make them available to child processes, they must be promoted to environment variables using the export statement, as in:
+
+>export VAR=value
+
+or
+
+>VAR=value ; export VAR
+
+While child processes are allowed to modify the value of exported variables, the parent will not see any changes; exported variables are not shared, they are only copied and inherited.
+
+Typing export with no arguments will give a list of all currently exported environment variables.
+
+## Functions
+
+A function is a code block that implements a set of operations. Functions are useful for executing procedures multiple times, perhaps with varying input variables. Functions are also often called subroutines. Using functions in scripts requires two steps:
+
+1. Declaring a function
+2. Calling a function.
+
+The function declaration requires a name which is used to invoke it. The proper syntax is:
+
+    function_name () {
+       command...
+    }
+
+For example, the following function is named display:
+
+    display () {
+       echo "This is a sample function"
+    }
+
+The function can be as long as desired and have many statements. Once defined, the function can be called later as many times as necessary. In the full example shown in the figure, we are also showing an often-used refinement: how to pass an argument to the function. The first argument can be referred to as $1, the second as $2, etc.
+
+-------------------------
+
+# Try ch. 15 problems and solutions
+
+---------------------------
+
+## if/elif/else Statement
+
+In compact form, the syntax of an if statement is:
+
+>if TEST-COMMANDS; then CONSEQUENT-COMMANDS; fi
+
+
+>if:
+
+```
+if condition  
+then  
+        statements  
+else  
+       statements  
+fi
+```
+
+- example"
+
+```
+if [ -f "$1" ]
+then
+    echo file "$1 exists" 
+else
+    echo file "$1" does not exist
+fi
+```
+
+>elif
+
+```
+if [ sometest ] ; then
+    echo Passed test1 
+elif [ somothertest ] ; then
+    echo Passed test2 
+fi
+```
+
+--------------
+
+### Testing for files
+
+You can use the if statement to test for file attributes, such as:
+
+- File or directory existence
+- Read or write permission
+- Executable permission.
+
+ example:
+```
+if [ -x /etc/passwd ] ; then
+    ACTION
+fi
+```
+
+the if statement checks if the file /etc/passwd is executable, which it is not. Note the very common practice of putting:
+```
+; then
+```
+on the same line as the if statement.
+
+You can view the full list of file conditions typing:
+```
+man 1 test.
+```
+
+
+|Condition| 	Meaning|
+|:------|:---------|
+|-e file 	|Checks if the file exists.|
+|-d file 	|Checks if the file is a directory.|
+|-f file| 	Checks if the file is a regular file (i.e. not a symbolic link, device node, directory, etc.)|
+|-s file |	Checks if the file is of non-zero size.|
+|-g file |	Checks if the file has sgid set.|
+|-u file |	Checks if the file has suid set.|
+|-r file |	Checks if the file is readable.|
+|-w file |	Checks if the file is writable.|
+|-x file |	Checks if the file is executable.|
+
+--------------------------------
+
+## boolean
+
+Boolean expressions return either TRUE or FALSE. We can use such expressions when working with multiple data types, including strings or numbers, as well as with files. For example, to check if a file exists, use the following conditional test:
+
+>[ -e \<filename> ]
+
+Similarly, to check if the value of number1 is greater than the value of number2, use the following conditional test:
+
+>[ $number1 -gt $number2 ]
+
+The operator -gt returns TRUE if number1 is greater than number2.
+
+<br>
+
+- You can use the if statement to compare strings using the operator == (two equal signs). The syntax is as follows:
+```
+if [ string1 == string2 ] ; then
+   ACTION
+fi
+```
+--------------------------
+
+### Numerical tests
+
+|Operator| 	Meaning|
+|:-----|:-----|
+|-eq| 	Equal to|
+|-ne |	Not equal to|
+|-gt |	Greater than|
+|-lt |	Less than|
+|-ge |	Greater than or equal to|
+|-le |	Less than or equal to|
+
+-----------------------
+
+### Arithmetic Expressions
+
+Arithmetic expressions can be evaluated in the following three ways (spaces are important!):
+
+- Using the expr utility  
+expr is a standard but somewhat deprecated program. The syntax is as follows:  
+                .  
+expr 8 + 8  
+echo $(expr 8 + 8)
+
+- Using the $((...)) syntax   
+This is the built-in shell format. The syntax is as follows:  
+.  
+echo $((x+1))
+- Using the built-in shell command let. The syntax is as follows:  
+let x=( 1 + 2 ); echo $x
+
+In modern shell scripts, the use of expr is better replaced with var=$((...)).
+
+------------------------------
+
