@@ -1897,3 +1897,44 @@ In modern shell scripts, the use of expr is better replaced with var=$((...)).
 
 ------------------------------
 
+# Chapter 16
+
+## bash string manipulation
+
+|Operator| 	Meaning|
+|:----|:----|
+|[[ string1 > string2 ]] |	Compares the sorting order of string1 and string2.|
+|[[ string1 == string2 ]] |	Compares the characters in string1 with the characters in string2.|
+|myLen1=${#string1} |	Saves the length of string1 in the variable myLen1.|
+
+### part of string
+
+At times, you may not need to compare or use an entire string. To extract the first n characters of a string we can specify: 
+>${string:0:n}  
+
+
+ Here, 0 is the offset in the string (i.e. which character to begin from) where the extraction needs to start and n is the number of characters to be extracted.
+
+To extract all characters in a string after a dot (.), use the following expression:
+> ${string#*.}.
+
+## case statement
+
+The **case** statement is used in scenarios where the actual value of a variable can lead to different execution paths. **case** statements are often used to handle command-line options.
+
+Some of the advantages of using the case statement:
+
+- It is easier to read and write.
+- It is a good alternative to nested, multi-level if-then-else-fi code blocks.
+- It enables you to compare a variable against several values at once.
+- It reduces the complexity of a program.
+
+```
+case expression in
+   pattern1) execute commands;;
+   pattern2) execute commands;;
+   pattern3) execute commands;;
+   pattern4) execute commands;;
+   * )       execute some default commands or nothing ;;
+esac
+````
