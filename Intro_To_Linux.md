@@ -1,3 +1,8 @@
+ctrl-alt-m to extract function  
+alt-enter ->>>> for loop to   
+crtl alt c ---> constant  
+local history -> show history  
+
 # Introduction to Linux
 
 # Chapter 3
@@ -1938,3 +1943,85 @@ case expression in
    * )       execute some default commands or nothing ;;
 esac
 ````
+
+![example case](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/afb49c3ebe75ff82910621adb09a22c6/asset-v1:LinuxFoundationX+LFS101x+3T2018+type@asset+block/LFS01_ch15_screen18.jpg)
+
+
+-----------------------------
+
+## Looping Construct
+
+3 types:
+- for
+- while
+- until
+
+<br>
+
+>example **for**
+```
+for variable-name in list
+do
+    execute one iteration for each item in the list until the list is finished
+done
+```
+
+<br>
+
+>example **while**
+```
+while condition is true
+do
+    Commands for execution
+    ----
+done
+```
+
+<br>
+
+>example **until**
+```
+until condition is false
+do
+    Commands for execution
+    ----
+done
+```
+
+
+---------------------
+
+
+## debug
+
+> bash –x ./script_file,
+
+- It traces and prefixes each command with the + character.
+- It displays each command before executing it.
+- It can debug only selected parts of a script (if desired) with:
+
+```
+set -x    # turns on debugging
+...
+set +x    # turns off debugging
+```
+
+## Creating Temporary Files and Directories
+
+|Command 	|Usage|
+|:----|:---|
+|TEMP=$(mktemp /tmp/tempfile.XXXXXXXX)| 	To create a temporary file|
+|TEMPDIR=$(mktemp -d /tmp/tempdir.XXXXXXXX)| 	To create a temporary directory|
+
+>example
+```
+> $ ln -s /etc/passwd /tmp/tempfile
+
+The password file will be overwritten by the temporary file contents.
+
+To prevent such a situation, make sure you randomize your temporary file names by replacing the above line with the following lines:
+
+> TEMP=$(mktemp /tmp/tempfile.XXXXXXXX)
+> echo $VAR > $TEMP
+
+```
