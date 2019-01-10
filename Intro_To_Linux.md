@@ -2025,5 +2025,102 @@ To prevent such a situation, make sure you randomize your temporary file names b
 > echo $VAR > $TEMP
 
 ```
+### Discarding output with /dev/null
+
+>$ ls -lR /tmp > /dev/null
+
+* the entire standard output stream is ignored, but any errors will still appear on the console.
+
+> the entire standard output stream is ignored, but any errors will still appear on the console.
+
+* this will dump both stdout and stderr
+
+## Random data and numbers
+
+> Using the $RANDOM environment variable
+
+read https://en.wikipedia.org/wiki/FIPS_140-2
+
+## challenge
+
+Do you enjoy learning new skills? Would you like to get some extra experience under your belt and apply what you have learned to real world job tasks? The Mooqita project is here to change the way education and work are connected. We are NOT part of The Linux Foundation, but we are very happy to work with the course team to offer you a unique opportunity.
+
+In this class we offer an additional homework assignment. It is a little more challenging than your regular assignments, and OPTIONAL. 
+
+Solving the challenge will allow you to start building a portfolio on Mooqita and give you the chance to be connected with employers, for internships, full time positions, and paid projects.
+
+Here's how this works:
+
+Go to the challenge link, register your account, and start solving. Complete the additional assignment and engage in a peer review process. The challenge is more challenging and closer to real world work challenges or questions you might encounter in a job interview. Once you have done the challenge presented here, you can try out more of our challenges. You will not get paid to solve them, but you get extra practice through real world challenges. The companies will NOT get work for free through this.
+
+More information is available at https://www.mooqita.org/.
+
+Mooqita is new and we are still improving the platform. If you encounter problems, have questions, or want to give us feedback, please contact us via info@mooqita.org or open a ticket in our bug-tracker (https://github.com/Mooqita/worklearn/issues).
+
+Hint: Using a bug-tracker is a very important part of a developer’s life, so give it a try. 
+
+And here is your entry MooqitaChallenge (https://app.mooqita.org/app/solution?challenge_id=YKgnjCTtuD2AoAmu2).
+
+We wish you a great time in this class and hope to hear from you!
 
 
+# Chapter 7 printing
+
+> Common UNIX Printing System (CUPS).
+
+Important configuration files:
+ * cupsd.conf
+ * printers.conf
+ 
+ > view the full list of configuration files by typing: **ls -l /etc/cups/**.
+ 
+ > CUPS stores print requests as files under the **/var/spool/cups** directory
+
+> Log files are placed in **/var/log/cups**  
+$ sudo ls -l /var/log/cups
+
+
+## Managing CUPS
+
+$ systemctl status cups
+
+$ sudo systemctl [enable|disable] cups
+
+$ sudo systemctl [start|stop|restart] cups
+
+## Printing from the Command-Line Interface
+
+> CUPS provides two command-line interfaces, descended from the System V and BSD flavors of UNIX. This means that you can use either lp (System V) or lpr (BSD) to print. You can use these commands to print text, PostScript, PDF, and image files.
+  
+### using ip
+
+
+|Command	|Usage|
+|:---|:---|
+|lp \<filename>	|To print the file to default printer|
+|lp -d printer \<filename>|	To print to a specific printer (useful if multiple printers are available)|
+|program [pipeline] lp echo string [pipeline] lp	|To print the output of a program|
+|lp -n number \<filename>|	To print multiple copies|
+|lpoptions -d printer	|To set the default printer|
+|lpq -a	|To show the queue status|
+|lpadmin	|To configure printer queues|
+
+### Managing printing jobs
+
+|Command	|Usage|
+|:---|:----|
+|lpstat -p -d	|To get a list of available printers, along with their status|
+|lpstat -a	|To check the status of all connected printers, including job numbers|
+|cancel job-id OR lprm job-id	|To cancel a print job|
+|lpmove job-id newprinter	|To move a print job to new printer|
+
+### Viewing PDF
+
+Linux has many standard programs that can read PDF files, as well as many applications that can easily create them, including all available office suites, such as LibreOffice.
+
+The most common Linux PDF readers are:
+
+* Evince is available on virtually all distributions and the most widely used program.
+* Okular is based on the older kpdf and available on any distribution that provides the KDE environment.
+* GhostView is one of the first open source PDF readers and is universally available.
+* Xpdf is one of the oldest open source PDF readers and still has a good user base. 
